@@ -1,0 +1,189 @@
+openapi: "3.0.3"
+info:
+  title: "SpotifyCurrentSongDisplay API"
+  description: "SpotifyCurrentSongDisplay API"
+  version: "1.0.0"
+servers:
+- url: "https://SpotifyCurrentSongDisplay"
+paths:
+  /:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Hello World!"
+  /articles:
+    get:
+      description: ""
+      parameters:
+      - name: "sort"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK <br> Get all articles ..."
+          content:
+            '*/*':
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: ""
+  /double-receive:
+    post:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+  /callback:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK <br> Redirect"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "/hello"
+  /login:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK <br> Redirect"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "/callback"
+  /session/increment:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: ""
+  /json/gson:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Map"
+  /html-css-dsl:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/Function1"
+              examples:
+                text/html:
+                  description: "HTML document"
+                  value: ""
+  /html-dsl:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/Function1"
+              examples:
+                text/html:
+                  description: "HTML document"
+                  value: ""
+  /html-mustache:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MustacheContent"
+  /styles.css:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/css:
+              schema:
+                type: "string"
+components:
+  schemas:
+    Map:
+      type: "object"
+      properties: {}
+    Function1:
+      type: "object"
+      properties: {}
+    Object:
+      type: "object"
+      properties: {}
+    HeaderValueParam:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        value:
+          type: "string"
+        escapeValue:
+          type: "boolean"
+    ContentType:
+      type: "object"
+      properties:
+        contentType:
+          type: "string"
+        contentSubtype:
+          type: "string"
+        parameters:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/HeaderValueParam"
+    MustacheContent:
+      type: "object"
+      properties:
+        template:
+          type: "string"
+        model:
+          $ref: "#/components/schemas/Object"
+        etag:
+          type: "string"
+        contentType:
+          $ref: "#/components/schemas/ContentType"
